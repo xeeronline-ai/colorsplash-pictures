@@ -4,7 +4,7 @@ name: Prepare pictures
 on:
   push:
     branches: [main]
-    paths: ['pictures/**', 'tools/**']
+    paths: ['pictures/**', 'tools/**', 'free.txt']
   workflow_dispatch:
 
 permissions:

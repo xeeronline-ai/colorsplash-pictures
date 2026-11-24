@@ -6,7 +6,8 @@ JPG in pictures/<category>/ it:
   * fixes the name (lowercase, words joined by "_"),
   * shrinks it to 1024 px and saves it as WebP next to it,
   * moves the original to originals/<category>/ (the app never downloads it).
-Then it writes catalog.json, the list the app reads.
+Then it writes catalog.json, the list the app reads. Pictures named in
+free.txt are free; every other picture is locked in the app.
 
     python3 tools/build_catalog.py
 
@@ -26,6 +27,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 PICTURES = ROOT / 'pictures'
 ORIGINALS = ROOT / 'originals'
 CATALOG = ROOT / 'catalog.json'
+FREE = ROOT / 'free.txt'
 
 MAX_SIDE = 1024
 QUALITY = 95
@@ -86,21 +88,42 @@ def prepare() -> bool:
     return ok
 
 
-def write_catalog() -> None:
+def read_free() -> set:
+    """`animals/happy_lion` lines; `#` starts a comment."""
+    if not FREE.exists():
+        return set()
+    free = set()
+    for line in FREE.read_text().splitlines():
+        line = line.split('#')[0].strip().removesuffix('.png').removesuffix('.webp')
+        if '/' in line:
+            category, name = line.split('/', 1)
+            free.add(f'{clean(category)}/{clean(name)}')
+    return free
+
+
+def write_catalog() -> bool:
+    free = read_free()
     pictures = []
     for path in sorted(PICTURES.glob('*/*.webp')):
-        pictures.append({
+        entry = {
             'category': path.parent.name,
             'name': path.stem,
             'path': path.relative_to(ROOT).as_posix(),
             'hash': hashlib.sha256(path.read_bytes()).hexdigest()[:16],
-        })
+        }
+        if f'{path.parent.name}/{path.stem}' in free:
+            entry['free'] = True
+        pictures.append(entry)
     CATALOG.write_text(json.dumps({'version': 1, 'pictures': pictures}, indent=2) + '\n')
-    print(f'catalog.json lists {len(pictures)} pictures')
+    listed = {f"{p['category']}/{p['name']}" for p in pictures}
+    for missing in sorted(free - listed):
+        print(f'free.txt: no picture called {missing}')
+    print(f'catalog.json lists {len(pictures)} pictures, {sum(1 for p in pictures if p.get("free"))} free')
+    return not (free - listed)
 
 
 if __name__ == '__main__':
     ok = prepare()
-    write_catalog()
+    ok = write_catalog() and ok
     # Fail the Action so a skipped upload shows a red cross on GitHub.
     sys.exit(0 if ok else 1)

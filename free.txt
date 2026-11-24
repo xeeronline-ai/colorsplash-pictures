@@ -1,0 +1,7 @@
+# Free pictures: anyone can open these without watching a video.
+# Every other picture from this repo shows a lock in the app.
+# One picture per line: folder/name (without .png). Lines starting with # are ignored.
+#
+# The 10 pictures built into the app are always free.
+
+animals/happy_lion

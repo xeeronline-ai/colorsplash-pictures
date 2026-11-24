@@ -38,6 +38,18 @@ Same naam ki nayi PNG upload kar do. Purani picture apne aap badal jaayegi.
 `pictures/<category>/` me us picture ki `.webp` file kholo, upar **⋯ → Delete file** dabao, phir **Commit changes**.
 Woh picture app se bhi hat jaayegi.
 
+## Free aur taale wali pictures 🔒
+GitHub se aane wali har picture app me **taale ke saath** aati hai. Bachcha video dekhkar use khol sakta hai, ya parents "Unlock all" kharid sakte hain.
+
+Kisi picture ko **free** karna ho to repo me `free.txt` kholo, pencil ✏️ (Edit) dabao, aur ek nayi line me `folder/naam` likho (bina `.png` ke):
+```
+animals/happy_lion
+vehicles/school_bus
+```
+Phir **Commit changes** dabao. Kisi picture par wapas taala lagana ho to uski line hata do.
+
+App ke andar ki purani 10 pictures hamesha free rehti hain.
+
 ## Kaise pata kare ki sab theek hua
 Repo me upar **Actions** tab kholo.
 - ✅ Green tick: picture taiyaar hai.
