@@ -1,4 +1,23 @@
 {
   "version": 1,
-  "pictures": []
+  "pictures": [
+    {
+      "category": "animals",
+      "name": "cute_bunny",
+      "path": "pictures/animals/cute_bunny.webp",
+      "hash": "2180aac43edddbc9"
+    },
+    {
+      "category": "animals",
+      "name": "happy_lion",
+      "path": "pictures/animals/happy_lion.webp",
+      "hash": "3e7a7c2f9cb9e919"
+    },
+    {
+      "category": "animals",
+      "name": "little_turtle",
+      "path": "pictures/animals/little_turtle.webp",
+      "hash": "51020dfc29faa3b6"
+    }
+  ]
 }
