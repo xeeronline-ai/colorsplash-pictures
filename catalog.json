@@ -11,7 +11,8 @@
       "category": "animals",
       "name": "happy_lion",
       "path": "pictures/animals/happy_lion.webp",
-      "hash": "3e7a7c2f9cb9e919"
+      "hash": "3e7a7c2f9cb9e919",
+      "free": true
     },
     {
       "category": "animals",
