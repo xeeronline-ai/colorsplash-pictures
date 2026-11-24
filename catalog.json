@@ -18,6 +18,24 @@
       "name": "little_turtle",
       "path": "pictures/animals/little_turtle.webp",
       "hash": "51020dfc29faa3b6"
+    },
+    {
+      "category": "vehicles",
+      "name": "little_train",
+      "path": "pictures/vehicles/little_train.webp",
+      "hash": "6878a60632c708fc"
+    },
+    {
+      "category": "vehicles",
+      "name": "sail_boat",
+      "path": "pictures/vehicles/sail_boat.webp",
+      "hash": "ff200fa0545a3a5c"
+    },
+    {
+      "category": "vehicles",
+      "name": "school_bus",
+      "path": "pictures/vehicles/school_bus.webp",
+      "hash": "8b8f6e4a6f6f5d13"
     }
   ]
 }
